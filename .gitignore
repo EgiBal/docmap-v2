@@ -1,0 +1,32 @@
+﻿.env
+*.env
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+node_modules/
+.next/
+data/
+*.db
+# corpus/raw/ is committed: OGL v3 sample files (see corpus/SOURCES.md)
+
+# T16c additions
+corpus-holdout/raw/
+corpus-holdout/blind/
+corpus*/tools/venv/
+notes/design/.pw/
+frontend/test-results/
+frontend/playwright-report/
+frontend/tsconfig.tsbuildinfo
+test-results/
+playwright-report/
+.venv/
+*.webm
+
+# working notes, scratch tools and old demo files stay local
+notes/
+tools/
+corpus-holdout/tools/
+docs/demo.gif
+docs/demo.mp4

@@ -1,0 +1,174 @@
+﻿@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-accent-soft: var(--accent-soft);
+}
+
+/* Direction A "Calm Enterprise" tokens. Single source of truth; names mirrored in lib/tokens.ts. */
+:root {
+  --bg: #fafafa; --surface: #ffffff; --surface-2: #f4f4f5; --border-c: #e4e4e7; --text: #18181b; --muted-c: #52525b;
+  --accent-c: #0f766e; --accent-fg: #ffffff; --accent-soft: #ccfbf1;
+  --warn: #b45309; --warn-bg: #fef3c7; --danger: #b91c1c; --danger-bg: #fee2e2; --ok: #15803d;
+  --c-finance: #0f766e; --c-workforce: #6d28d9; --c-environment: #4d7c0f; --c-digital: #1d4ed8; --c-flood: #0e7490;
+  --c-6: #b45309; --c-7: #be123c; --c-8: #475569;
+  --edge: #71717a;
+  --radius: 12px;
+
+  /* shadcn semantic names -> A tokens */
+  --background: var(--bg); --foreground: var(--text);
+  --card: var(--surface); --card-foreground: var(--text);
+  --popover: var(--surface); --popover-foreground: var(--text);
+  --primary: var(--accent-c); --primary-foreground: var(--accent-fg);
+  --secondary: var(--surface-2); --secondary-foreground: var(--text);
+  --muted: var(--surface-2); --muted-foreground: var(--muted-c);
+  --accent: var(--surface-2); --accent-foreground: var(--text);
+  --destructive: var(--danger);
+  --border: var(--border-c); --input: var(--border-c); --ring: var(--accent-c);
+  --bad: var(--danger);
+  --chart-1: var(--c-finance); --chart-2: var(--c-workforce); --chart-3: var(--c-environment); --chart-4: var(--c-digital); --chart-5: var(--c-flood);
+  --sidebar: var(--surface); --sidebar-foreground: var(--text); --sidebar-primary: var(--accent-c); --sidebar-primary-foreground: var(--accent-fg);
+  --sidebar-accent: var(--surface-2); --sidebar-accent-foreground: var(--text); --sidebar-border: var(--border-c); --sidebar-ring: var(--accent-c);
+}
+
+.dark {
+  --bg: #09090b; --surface: #111113; --surface-2: #18181b; --border-c: #27272a; --text: #fafafa; --muted-c: #a1a1aa;
+  --accent-c: #2dd4bf; --accent-fg: #042f2e; --accent-soft: #134e4a;
+  --warn: #fbbf24; --warn-bg: #3a2a08; --danger: #f87171; --danger-bg: #3b1212; --ok: #4ade80;
+  --c-finance: #2dd4bf; --c-workforce: #a78bfa; --c-environment: #a3e635; --c-digital: #60a5fa; --c-flood: #22d3ee;
+  --c-6: #fbbf24; --c-7: #fb7185; --c-8: #94a3b8;
+  --edge: #a1a1aa;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground; font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  html { font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif; }
+  h1 { letter-spacing: -0.02em; }
+  :focus-visible { outline: 2px solid var(--accent-c); outline-offset: 2px; }
+  button, a, [role="button"] { transition: background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out, opacity 160ms ease-out, transform 160ms ease-out; }
+}
+
+/* Numbers: Geist Mono with tabular figures */
+.num { font-family: var(--font-geist-mono), ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+@keyframes docmap-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes docmap-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+.fade-in { animation: docmap-in 220ms ease-out both; }
+.skeleton { background: var(--surface-2); border-radius: 6px; animation: docmap-pulse 1.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* React Flow follows the app theme */
+.react-flow { --xy-background-color: transparent; --xy-edge-stroke-default: var(--edge); }
+.react-flow__controls button { background: var(--surface); color: var(--text); border-color: var(--border-c); }
+.react-flow__controls button:hover { background: var(--surface-2); }
+.react-flow__controls button svg { fill: currentColor; }
+.react-flow__background pattern circle, .react-flow__background pattern path { stroke: var(--border-c); fill: var(--border-c); }
+
+/* ------------------------------------------------------------------ */
+/* Style "cohere" (chosen 2026-11-23, always on via <html data-variant="cohere">). Source: VoltAgent/awesome-design-md,  */
+/* design-md/cohere/DESIGN.md (copy in notes/design/cohere/).          */
+/* White editorial canvas, near-black pill CTAs, soft-stone surfaces,  */
+/* deep-green feature band, coral as a small accent, flat (no shadow). */
+/* ------------------------------------------------------------------ */
+.v-announce { display: none; }
+[data-variant="cohere"] .v-announce {
+  display: block; height: 36px; line-height: 36px; background: #000; color: #fff; text-align: center; font-size: 12px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 16px;
+}
+[data-variant="cohere"] {
+  --bg: #ffffff; --surface: #ffffff; --surface-2: #eeece7; --border-c: #d9d9dd; --text: #212121; --muted-c: #616161;
+  --accent-c: #17171c; --accent-fg: #ffffff; --accent-soft: #edfce9;
+  --warn: #9a3412; --warn-bg: #fff1ec; --danger: #b30000; --danger-bg: #fdecec; --ok: #1a7f4b;
+  --c-finance: #003c33; --c-workforce: #1863dc; --c-environment: #3f7d20; --c-digital: #071829; --c-flood: #ff7759;
+  --edge: #75758a;
+  --ring: #4c6ee6;
+}
+/* Radii (Tailwind inlines theme radii, so the classes are overridden directly) */
+[data-variant="cohere"] .rounded-sm { border-radius: 32px; }      /* buttons, chips, inputs: pills */
+[data-variant="cohere"] .rounded-lg { border-radius: 8px; }
+[data-variant="cohere"] .rounded-xl { border-radius: 16px; }
+[data-variant="cohere"] .rounded-2xl { border-radius: 22px; }    /* signature media-card radius */
+[data-variant="cohere"].dark {
+  --bg: #0b0b0e; --surface: #17171c; --surface-2: #212127; --border-c: #2e2e36; --text: #f5f5f5; --muted-c: #a3a3ad;
+  --accent-c: #ffffff; --accent-fg: #17171c; --accent-soft: #0d3a32;
+  --warn: #ffad9b; --warn-bg: #3a1d15; --danger: #ff8a80; --danger-bg: #3b1212; --ok: #7ee2a8;
+  --c-finance: #5fd1b8; --c-workforce: #7aa7ff; --c-environment: #a3e635; --c-digital: #c4b5fd; --c-flood: #ff7759;
+  --edge: #93939f;
+}
+[data-variant="cohere"] body { font-size: 15px; }
+[data-variant="cohere"] :focus-visible { outline-color: #4c6ee6; }
+[data-variant="cohere"] .shadow-sm, [data-variant="cohere"] .shadow-xl { box-shadow: none; }
+
+/* Type: tight display headlines, no heavy bold */
+[data-variant="cohere"] .v-display { font-family: var(--font-display), var(--font-inter), sans-serif; font-weight: 400; letter-spacing: -0.03em; line-height: 1; }
+[data-variant="cohere"] h1.v-display { font-size: clamp(40px, 7vw, 76px); }
+[data-variant="cohere"] h2.v-display { font-size: clamp(30px, 4.5vw, 48px); line-height: 1.1; }
+[data-variant="cohere"] h1, [data-variant="cohere"] h2, [data-variant="cohere"] h3 { font-weight: 500; }
+[data-variant="cohere"] .v-accent { color: #003c33; }
+[data-variant="cohere"].dark .v-accent { color: #5fd1b8; }
+[data-variant="cohere"] .v-eyebrow { font-size: 13px; color: var(--text); border-color: var(--text); border-radius: 9999px; }
+[data-variant="cohere"] h2.v-display svg { display: none; }
+[data-variant="cohere"] .v-step { border-radius: 9999px; font-size: 12px; }
+[data-variant="cohere"] .v-stat { font-family: var(--font-display), sans-serif; font-weight: 400; font-size: 48px; color: var(--text); letter-spacing: -0.04em; }
+
+/* Deep-green feature band */
+[data-variant="cohere"] .v-band { max-width: 1000px; background: #003c33; color: #fff; border-radius: 22px; padding: 72px clamp(20px, 5vw, 56px); }
+[data-variant="cohere"] .v-band .bg-card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14); }
+[data-variant="cohere"] .v-band .text-muted-foreground { color: rgba(255,255,255,.72); }
+[data-variant="cohere"] .v-band .text-primary { color: #ff7759; }
+[data-variant="cohere"] .v-band h2 { color: #fff; }
